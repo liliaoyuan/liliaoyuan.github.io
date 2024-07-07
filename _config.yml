@@ -33,6 +33,12 @@ plugins:
 titles_from_headings:
   strip_title: true
   collections: true
+markdown: kramdown
+kramdown:
+  input: GFM
+  math_engine: mathjax
+  syntax_highlighter: rouge
+
 
 defaults:
   - scope:
