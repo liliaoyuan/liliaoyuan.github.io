@@ -7,7 +7,7 @@
 <meta property="og:locale" content="en_US">
 <meta property="og:image" content="http://example.com/img/spinningTennis.jpg">
 <meta property="article:published_time" content="2025-01-17T10:00:02.000Z">
-<meta property="article:modified_time" content="2025-01-18T01:45:37.907Z">
+<meta property="article:modified_time" content="2025-01-18T02:07:43.961Z">
 <meta property="article:author" content="Ludiw Yuan">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:image" content="http://example.com/img/spinningTennis.jpg"><link rel="shortcut icon" href="/img/favicon.png"><link rel="canonical" href="http://example.com/2025/01/17/CPA/index.html"><link rel="preconnect" href="//cdn.jsdelivr.net"/><link rel="preconnect" href="//busuanzi.ibruce.info"/><link rel="stylesheet" href="/css/index.css"><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fortawesome/fontawesome-free/css/all.min.css"><script>
@@ -145,7 +145,7 @@
   isHighlightShrink: false,
   isToc: true,
   isShuoshuo: false
-}</script><meta name="generator" content="Hexo 7.3.0"><link href="https://cdn.bootcss.com/KaTeX/0.11.1/katex.min.css" rel="stylesheet" /></head><body><div class="post" id="body-wrap"><header class="post-bg" id="page-header"><nav id="nav"><span id="blog-info"><a class="nav-site-title" href="/"><span class="site-name">YXW</span></a><a class="nav-page-title" href="/"><span class="site-name">CPA</span></a></span><div id="menus"></div></nav><div id="post-info"><h1 class="post-title">CPA</h1><div id="post-meta"><div class="meta-firstline"><span class="post-meta-date"><i class="far fa-calendar-alt fa-fw post-meta-icon"></i><span class="post-meta-label">Created</span><time class="post-meta-date-created" datetime="2025-01-17T10:00:02.000Z" title="Created 2025-01-17 18:00:02">2025-01-17</time><span class="post-meta-separator">|</span><i class="fas fa-history fa-fw post-meta-icon"></i><span class="post-meta-label">Updated</span><time class="post-meta-date-updated" datetime="2025-01-18T01:45:37.907Z" title="Updated 2025-01-18 09:45:37">2025-01-18</time></span></div><div class="meta-secondline"><span class="post-meta-separator">|</span><span class="post-meta-pv-cv" id="" data-flag-title=""><i class="far fa-eye fa-fw post-meta-icon"></i><span class="post-meta-label">Post Views:</span><span id="busuanzi_value_page_pv"><i class="fa-solid fa-spinner fa-spin"></i></span></span></div></div></div></header><main class="layout" id="content-inner"><div id="post"><article class="container post-content" id="article-container"><h1>Correlation Power Analysis (CPA) Technical Guide</h1>
+}</script><meta name="generator" content="Hexo 7.3.0"><link href="https://cdn.bootcss.com/KaTeX/0.11.1/katex.min.css" rel="stylesheet" /></head><body><div class="post" id="body-wrap"><header class="post-bg" id="page-header"><nav id="nav"><span id="blog-info"><a class="nav-site-title" href="/"><span class="site-name">YXW</span></a><a class="nav-page-title" href="/"><span class="site-name">CPA</span></a></span><div id="menus"></div></nav><div id="post-info"><h1 class="post-title">CPA</h1><div id="post-meta"><div class="meta-firstline"><span class="post-meta-date"><i class="far fa-calendar-alt fa-fw post-meta-icon"></i><span class="post-meta-label">Created</span><time class="post-meta-date-created" datetime="2025-01-17T10:00:02.000Z" title="Created 2025-01-17 18:00:02">2025-01-17</time><span class="post-meta-separator">|</span><i class="fas fa-history fa-fw post-meta-icon"></i><span class="post-meta-label">Updated</span><time class="post-meta-date-updated" datetime="2025-01-18T02:07:43.961Z" title="Updated 2025-01-18 10:07:43">2025-01-18</time></span></div><div class="meta-secondline"><span class="post-meta-separator">|</span><span class="post-meta-pv-cv" id="" data-flag-title=""><i class="far fa-eye fa-fw post-meta-icon"></i><span class="post-meta-label">Post Views:</span><span id="busuanzi_value_page_pv"><i class="fa-solid fa-spinner fa-spin"></i></span></span></div></div></div></header><main class="layout" id="content-inner"><div id="post"><article class="container post-content" id="article-container"><h1>Correlation Power Analysis (CPA) Technical Guide</h1>
 <h2 id="basic-principles">Basic Principles</h2>
 <p>Correlation Power Analysis (CPA), also known as power attack, is a side-channel power analysis method. It operates by establishing correlations between hypothetical models and actual power consumption to derive the correct data model. The key is determined by selecting the value with the highest correlation.</p>
 <h2 id="how-to-use-cpa-to-decrypt-encryption-keys">How to Use CPA to Decrypt Encryption Keys</h2>
@@ -171,7 +171,7 @@
 </li>
 <li>
 <p>Obtain the power trace T = D * T and establish the power matrix:</p>
-<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">T=&#123;t&#x27;_0=&#123;t_&#123;0,1&#125;,...,t&#x27;_&#123;0,T&#125;&#125;&#125;</span><br></pre></td></tr></table></figure>
+<p>$ T={t’<em>0={t</em>{0,1},…,t’_{0,T}}} $</p>
 <p>This represents D total power traces, each containing T sampling points.</p>
 </li>
 </ol>
