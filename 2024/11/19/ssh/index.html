@@ -1,0 +1,352 @@
+<!DOCTYPE html><html lang="en" data-theme="light"><head><meta charset="UTF-8"><meta http-equiv="X-UA-Compatible" content="IE=edge"><meta name="viewport" content="width=device-width, initial-scale=1.0,viewport-fit=cover"><title>ssh | YXW</title><meta name="author" content="Ludiw Yuan"><meta name="copyright" content="Ludiw Yuan"><meta name="format-detection" content="telephone=no"><meta name="theme-color" content="#ffffff"><meta name="description" content="ssh worksflow I classify the ssh for these three parts: code from ssh -vvv    tcp   connection establisment 12debug1: Connecting to ec2-3-91-205-43.compute-1.amazonaws.com [3.91.205.43] port 22.debu">
+<meta property="og:type" content="article">
+<meta property="og:title" content="ssh">
+<meta property="og:url" content="http://example.com/2024/11/19/ssh/index.html">
+<meta property="og:site_name" content="YXW">
+<meta property="og:description" content="ssh worksflow I classify the ssh for these three parts: code from ssh -vvv    tcp   connection establisment 12debug1: Connecting to ec2-3-91-205-43.compute-1.amazonaws.com [3.91.205.43] port 22.debu">
+<meta property="og:locale" content="en_US">
+<meta property="og:image" content="http://example.com/img/spinningTennis.jpg">
+<meta property="article:published_time" content="2024-11-19T02:21:50.000Z">
+<meta property="article:modified_time" content="2026-01-05T03:17:46.394Z">
+<meta property="article:author" content="Ludiw Yuan">
+<meta property="article:tag" content="NET">
+<meta property="article:tag" content="RSA">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:image" content="http://example.com/img/spinningTennis.jpg"><link rel="shortcut icon" href="/img/favicon.png"><link rel="canonical" href="http://example.com/2024/11/19/ssh/index.html"><link rel="preconnect" href="//cdn.jsdelivr.net"/><link rel="preconnect" href="//busuanzi.ibruce.info"/><link rel="stylesheet" href="/css/index.css"><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fortawesome/fontawesome-free/css/all.min.css"><script>
+    (() => {
+      
+    const saveToLocal = {
+      set: (key, value, ttl) => {
+        if (!ttl) return
+        const expiry = Date.now() + ttl * 86400000
+        localStorage.setItem(key, JSON.stringify({ value, expiry }))
+      },
+      get: key => {
+        const itemStr = localStorage.getItem(key)
+        if (!itemStr) return undefined
+        const { value, expiry } = JSON.parse(itemStr)
+        if (Date.now() > expiry) {
+          localStorage.removeItem(key)
+          return undefined
+        }
+        return value
+      }
+    }
+
+    window.btf = {
+      saveToLocal,
+      getScript: (url, attr = {}) => new Promise((resolve, reject) => {
+        const script = document.createElement('script')
+        script.src = url
+        script.async = true
+        Object.entries(attr).forEach(([key, val]) => script.setAttribute(key, val))
+        script.onload = script.onreadystatechange = () => {
+          if (!script.readyState || /loaded|complete/.test(script.readyState)) resolve()
+        }
+        script.onerror = reject
+        document.head.appendChild(script)
+      }),
+      getCSS: (url, id) => new Promise((resolve, reject) => {
+        const link = document.createElement('link')
+        link.rel = 'stylesheet'
+        link.href = url
+        if (id) link.id = id
+        link.onload = link.onreadystatechange = () => {
+          if (!link.readyState || /loaded|complete/.test(link.readyState)) resolve()
+        }
+        link.onerror = reject
+        document.head.appendChild(link)
+      }),
+      addGlobalFn: (key, fn, name = false, parent = window) => {
+        if (!false && key.startsWith('pjax')) return
+        const globalFn = parent.globalFn || {}
+        globalFn[key] = globalFn[key] || {}
+        globalFn[key][name || Object.keys(globalFn[key]).length] = fn
+        parent.globalFn = globalFn
+      }
+    }
+  
+      
+      const activateDarkMode = () => {
+        document.documentElement.setAttribute('data-theme', 'dark')
+        if (document.querySelector('meta[name="theme-color"]') !== null) {
+          document.querySelector('meta[name="theme-color"]').setAttribute('content', '#0d0d0d')
+        }
+      }
+      const activateLightMode = () => {
+        document.documentElement.setAttribute('data-theme', 'light')
+        if (document.querySelector('meta[name="theme-color"]') !== null) {
+          document.querySelector('meta[name="theme-color"]').setAttribute('content', '#ffffff')
+        }
+      }
+
+      btf.activateDarkMode = activateDarkMode
+      btf.activateLightMode = activateLightMode
+
+      const theme = saveToLocal.get('theme')
+    
+          theme === 'dark' ? activateDarkMode() : theme === 'light' ? activateLightMode() : null
+        
+      
+      const asideStatus = saveToLocal.get('aside-status')
+      if (asideStatus !== undefined) {
+        document.documentElement.classList.toggle('hide-aside', asideStatus === 'hide')
+      }
+    
+      
+    const detectApple = () => {
+      if (/iPad|iPhone|iPod|Macintosh/.test(navigator.userAgent)) {
+        document.documentElement.classList.add('apple')
+      }
+    }
+    detectApple()
+  
+    })()
+  </script><script>const GLOBAL_CONFIG = {
+  root: '/',
+  algolia: undefined,
+  localSearch: undefined,
+  translate: undefined,
+  highlight: {"plugin":"highlight.js","highlightCopy":true,"highlightLang":true,"highlightHeightLimit":false,"highlightFullpage":false,"highlightMacStyle":false},
+  copy: {
+    success: 'Copy Successful',
+    error: 'Copy Failed',
+    noSupport: 'Browser Not Supported'
+  },
+  relativeDate: {
+    homepage: false,
+    post: false
+  },
+  runtime: '',
+  dateSuffix: {
+    just: 'Just now',
+    min: 'minutes ago',
+    hour: 'hours ago',
+    day: 'days ago',
+    month: 'months ago'
+  },
+  copyright: undefined,
+  lightbox: 'null',
+  Snackbar: undefined,
+  infinitegrid: {
+    js: 'https://cdn.jsdelivr.net/npm/@egjs/infinitegrid/dist/infinitegrid.min.js',
+    buttonText: 'Load More'
+  },
+  isPhotoFigcaption: false,
+  islazyload: false,
+  isAnchor: false,
+  percent: {
+    toc: true,
+    rightside: false,
+  },
+  autoDarkmode: false
+}</script><script id="config-diff">var GLOBAL_CONFIG_SITE = {
+  title: 'ssh',
+  isPost: true,
+  isHome: false,
+  isHighlightShrink: false,
+  isToc: false,
+  isShuoshuo: false
+}</script><meta name="generator" content="Hexo 7.3.0"><link href="https://cdn.bootcss.com/KaTeX/0.11.1/katex.min.css" rel="stylesheet" /></head><body><div class="post" id="body-wrap"><header class="post-bg" id="page-header"><nav id="nav"><span id="blog-info"><a class="nav-site-title" href="/"><span class="site-name">YXW</span></a><a class="nav-page-title" href="/"><span class="site-name">ssh</span></a></span><div id="menus"></div></nav><div id="post-info"><h1 class="post-title">ssh</h1><div id="post-meta"><div class="meta-firstline"><span class="post-meta-date"><i class="far fa-calendar-alt fa-fw post-meta-icon"></i><span class="post-meta-label">Created</span><time class="post-meta-date-created" datetime="2024-11-19T02:21:50.000Z" title="Created 2024-11-19 10:21:50">2024-11-19</time><span class="post-meta-separator">|</span><i class="fas fa-history fa-fw post-meta-icon"></i><span class="post-meta-label">Updated</span><time class="post-meta-date-updated" datetime="2026-01-05T03:17:46.394Z" title="Updated 2026-01-05 11:17:46">2026-01-05</time></span></div><div class="meta-secondline"><span class="post-meta-separator">|</span><span class="post-meta-pv-cv" id="" data-flag-title=""><i class="far fa-eye fa-fw post-meta-icon"></i><span class="post-meta-label">Post Views:</span><span id="busuanzi_value_page_pv"><i class="fa-solid fa-spinner fa-spin"></i></span></span></div></div></div></header><main class="layout" id="content-inner"><div id="post"><article class="container post-content" id="article-container"><ol>
+<li>
+<p>ssh worksflow</p>
+<p>I classify the ssh for these three parts: code from ssh -vvv</p>
+<blockquote>
+<ol>
+<li>
+<p>tcp</p>
+<ol>
+<li>
+<p>connection establisment</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">debug1: Connecting to ec2-3-91-205-43.compute-1.amazonaws.com [3.91.205.43] port 22.</span><br><span class="line">debug1: Connection established.</span><br></pre></td></tr></table></figure>
+</li>
+<li>
+<p>verision negotiation</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">debug1: Local version string SSH-2.0-OpenSSH_for_Windows_9.5</span><br><span class="line">debug1: Remote protocol version 2.0, remote software version OpenSSH_9.6p1 Ubuntu-3ubuntu13.5</span><br></pre></td></tr></table></figure>
+</li>
+<li>
+<p>algorithm negotiation</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">debug1: kex: algorithm: curve25519-sha256</span><br><span class="line">debug1: kex: host key algorithm: ssh-ed25519</span><br><span class="line">debug1: kex: server-&gt;client cipher: chacha20-poly1305@openssh.com MAC: &lt;implicit&gt; compression: none</span><br><span class="line">debug1: kex: client-&gt;server cipher: chacha20-poly1305@openssh.com MAC: &lt;implicit&gt; compression: none</span><br></pre></td></tr></table></figure>
+</li>
+</ol>
+</li>
+<li>
+<p>authentication</p>
+<ol>
+<li>
+<p>key exchange</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">debug1: SSH2_MSG_KEXINIT sent</span><br><span class="line">debug1: SSH2_MSG_KEXINIT received</span><br><span class="line">debug1: SSH2_MSG_KEX_ECDH_REPLY received</span><br><span class="line">debug1: Server host key: ssh-ed25519 SHA256:+8J5uJOnejOrUrip/hyd/YitqbymzUoHA6TKwaCd1W8</span><br></pre></td></tr></table></figure>
+</li>
+<li>
+<p>user authencation</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">debug1: Authentications that can <span class="built_in">continue</span>: publickey</span><br><span class="line">debug1: Trying private key: C:\\Users\\OpenSource\\Desktop\\sshkeys\\Network+OS.pem</span><br><span class="line">debug3: sign_and_send_pubkey: signing using rsa-sha2-512</span><br><span class="line">debug3: send packet: <span class="built_in">type</span> 50</span><br><span class="line">Authenticated to xxx.com ([xx.xx.43]:22) using <span class="string">&quot;publickey&quot;</span>.</span><br></pre></td></tr></table></figure>
+</li>
+</ol>
+</li>
+<li>
+<p>session</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">debug1: channel 0: new session [client-session]</span><br><span class="line">debug2: channel 0: request pty-req confirm 1</span><br><span class="line">debug2: channel 0: request shell confirm 1</span><br></pre></td></tr></table></figure>
+</li>
+</ol>
+</blockquote>
+<div class="mermaid-wrap"><pre class="mermaid-src" hidden>
+  sequenceDiagram
+   participant Client
+   participant Server
+   
+
+   Note over Client,Server: Phase 1: Initial Connection
+   Client-&gt;&gt;Server: TCP Connection (Port 22)
+   Server--&gt;&gt;Client: Connection Accepted
+   
+   Note over Client,Server: Phase 2: Version Exchange
+   Client-&gt;&gt;Server: SSH-2.0-OpenSSH_for_Windows_9.5
+   Server--&gt;&gt;Client: SSH-2.0-OpenSSH_9.6p1 Ubuntu
+   
+   Note over Client,Server: Phase 3: Key Exchange
+   Client-&gt;&gt;Server: SSH2_MSG_KEXINIT
+   Server--&gt;&gt;Client: SSH2_MSG_KEXINIT
+   Note over Client,Server: Selected: curve25519-sha256
+   
+   Note over Client,Server: Phase 4: Host Authentication
+   Server--&gt;&gt;Client: SSH2_MSG_KEX_ECDH_REPLY
+   Note over Client: Verifies Host Key against known_hosts
+   
+   Note over Client,Server: Phase 5: Public Key Authentication
+   Client-&gt;&gt;Server: auth request (publickey)
+   Server--&gt;&gt;Client: SSH2_MSG_USERAUTH_PK_OK
+   Client-&gt;&gt;Server: signed auth request (rsa-sha2-512)
+   Server--&gt;&gt;Client: SSH2_MSG_USERAUTH_SUCCESS
+
+   
+  </pre></div>
+<p><img src="https://download.huawei.com/mdl/image/download?uuid=e355b8540acb4688ae03e7f880cb0948" alt="SSH working process"></p>
+<p>one step further on key authentication(code above is <strong>key exchange</strong> authentication using DH )</p>
+<p>for this part, I’d like to introduce detailly for pub authentication</p>
+<blockquote>
+<p>client send a authentication request to server (hostname pubkey)</p>
+<p>server receive  request and sent a challenge number encryption with pub</p>
+<p>client receives this number and decryption this number with private key (signature)</p>
+<p>server get the cipher and after this correspond to message sent, server give outs a certain auth ensurance</p>
+</blockquote>
+<p>details:</p>
+<ol>
+<li>
+<p>signature is named-definition words, so that you can guess this process is like you signature a file</p>
+</li>
+<li>
+<p>what is inside .pub file (open ssh pub, you could see that a number of code with note )</p>
+<blockquote>
+<div style="font-family: monospace; white-space: pre;">
+ssh-rsa AAAAB3NzaC1yc2EAAAADAQABAAABAQ... user@host 
+|_____| |____________________________| |_________|
+|               |                       |
+   密钥类型     Base64编码的密钥数据         注释
+</div>
+</blockquote>
+<p>this is kinda trick why they have to decode this to a sha512 (for this process, I’d like to right anohter article to analyze it so, it is categorized like hash algorithm</p>
+</li>
+<li>
+<p>pub vs pri</p>
+<p>is there any diff for these two? By default,there were no differe, but the pri is usually long</p>
+<p>extent.</p>
+<ul>
+<li>no matter how you generate a key-pair.(I mean whether it is the client or server even the third part, the process can not tell the spec user, which means rsa can not tell the key source)</li>
+<li>well MIMT(man in the middle can attack exchange process) could work if you catch the first time tcp. Of course they go through the authentication process not the decryption algorithm itself. meanwhile, it estimates fair enough not seen by the algorithm</li>
+</ul>
+</li>
+</ol>
+</li>
+<li>
+<p>protocol security</p>
+</li>
+<li>
+<p>ssh vs ssl</p>
+<div class="mermaid-wrap"><pre class="mermaid-src" hidden>
+  graph TB
+       subgraph SSH[&quot;SSH (Secure Shell Tunneling Protocol)&quot;]
+           A[User] --&gt;|Secure Channel| B[Remote Server]
+           C[Remote Control] --&gt;|Command Execution| D[File Transfer]
+       end
+   
+       subgraph SSL[&quot;SSL&#x2F;TLS (Secure Sockets Layer&#x2F;Transport Layer Security)&quot;]
+           E[Browser] --&gt;|Encrypted Communication| F[Website Server]
+           G[Online Banking] --&gt;|Data Transfer| H[E-commerce]
+       end
+       
+       style SSH fill:#f9f,stroke:#333,stroke-width:2px
+       style SSL fill:#bbf,stroke:#333,stroke-width:2px
+   
+   
+  </pre></div>
+<hr>
+<blockquote>
+<p><a target="_blank" rel="noopener" href="https://info.support.huawei.com/info-finder/encyclopedia/en/SSH.html">ssh</a></p>
+<p><a target="_blank" rel="noopener" href="https://blog.sunlan.me/2024/05/18/%E6%B5%85%E8%B0%88TCP%E4%B8%89%E6%AC%A1%E6%8F%A1%E6%89%8B%E5%92%8C%E5%9B%9B%E6%AC%A1%E6%8C%A5%E6%89%8B/#:~:text=%E4%B8%89%E6%AC%A1%E6%8F%A1%E6%89%8B%E7%A1%AE%E4%BF%9D%E5%8F%8C%E6%96%B9%E5%9C%A8,%E7%BD%91%E7%BB%9C%E5%BA%94%E7%94%A8%E8%87%B3%E5%85%B3%E9%87%8D%E8%A6%81%E3%80%82">tcp</a></p>
+</blockquote>
+</li>
+</ol>
+</article><div class="post-copyright"><div class="post-copyright__author"><span class="post-copyright-meta"><i class="fas fa-circle-user fa-fw"></i>Author: </span><span class="post-copyright-info"><a href="http://example.com">Ludiw Yuan</a></span></div><div class="post-copyright__type"><span class="post-copyright-meta"><i class="fas fa-square-arrow-up-right fa-fw"></i>Link: </span><span class="post-copyright-info"><a href="http://example.com/2024/11/19/ssh/">http://example.com/2024/11/19/ssh/</a></span></div><div class="post-copyright__notice"><span class="post-copyright-meta"><i class="fas fa-circle-exclamation fa-fw"></i>Copyright Notice: </span><span class="post-copyright-info">All articles on this blog are licensed under <a target="_blank" rel="noopener" href="https://creativecommons.org/licenses/by-nc-sa/4.0/">CC BY-NC-SA 4.0</a> unless otherwise stated.</span></div></div><div class="tag_share"><div class="post-meta__tag-list"><a class="post-meta__tags" href="/tags/NET/">NET</a><a class="post-meta__tags" href="/tags/RSA/">RSA</a></div><div class="post-share"><div class="social-share" data-image="/img/spinningTennis.jpg" data-sites="facebook,twitter,wechat,weibo,qq"></div><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/butterfly-extsrc/sharejs/dist/css/share.min.css" media="print" onload="this.media='all'"><script src="https://cdn.jsdelivr.net/npm/butterfly-extsrc/sharejs/dist/js/social-share.min.js" defer></script></div></div><nav class="pagination-post" id="pagination"><a class="pagination-related" href="/2024/11/19/number-theory/" title="number theory"><div class="cover" style="background: var(--default-bg-color)"></div><div class="info"><div class="info-1"><div class="info-item-1">Previous</div><div class="info-item-2">number theory</div></div><div class="info-2"><div class="info-item-1">from top to down   RSA process flowchart TD     A(&quot;Start&quot;):::softPink --&gt; B(&quot;Select p and q&quot;):::softYellow     B --&gt; C(&quot;Calculate n = p * q&quot;):::softYellow     C --&gt; D(&quot;Calculate φ(n) = (p-1) * (q-1)&quot;):::softYellow     D --&gt; E[&quot;Choose public key e:     1. 1 &lt; e &lt; φ(n)     2. gcd(e,φ(n)) = 1     3. Typically use 65537&quot;]:::softYellow     E --&gt; F[&quot;Calculate private key d:     1. d * e ≡ 1 mod φ(n)     2. Extended...</div></div></div></a><a class="pagination-related" href="/2024/10/29/%E8%AE%A1%E7%AE%97%E6%9C%BA%E7%BD%91%E7%BB%9C%E6%BC%AB%E6%B8%B8CN/" title="计算机网络漫游CN"><div class="cover" style="background: var(--default-bg-color)"></div><div class="info text-right"><div class="info-1"><div class="info-item-1">Next</div><div class="info-item-2">计算机网络漫游CN</div></div><div class="info-2"><div class="info-item-1">计算机网络漫游 本期讲讲基本的计算机网络概念，目标是让非业内人士了解网络运行原理和常见的概念。结合之前的文章，本期内容阅读耗时10min。   本期需要了解的重点概念： IP 子网掩码 WAN LAN WLAN NAT MAC 本期需要模拟的形象：邮局是怎么发到你家（通讯的起点和重点，以及通讯的主体）    WAN/LAN wide area network vs local area network 两者没有本质区别，都是连接一定数量的计算机网络设备，当然如其名。WAN的范围更广，因为它能够将多个LAN连接起来。 WAN也是我们俗称的外网，谐音比较好记的也就是万维网。LAN是局域网，典型的是小学时候信息课的局域网络网上邻居的电脑网络，就是典型的LAN实例。 现在你们知道路由器怎么连接了吧（现在的路由器的端口通用，真不错）  至于WLAN 这里就是wireless local area network 有意思的是WiFi是一种网络协议，我们通常住酒店或者吃麦当劳的时候向别人索要网路的时候，实际上的需要的是有连接外网功能的无线网络 多提一句： 电磁波的传播速度 电流的移动速度...</div></div></div></a></nav></div><div class="aside-content" id="aside-content"><div class="card-widget card-info text-center"><div class="avatar-img"><img src="/img/spinningTennis.jpg" onerror="this.onerror=null;this.src='/img/friend_404.gif'" alt="avatar"/></div><div class="author-info-name">Ludiw Yuan</div><div class="author-info-description"></div><div class="site-data"><a href="/archives/"><div class="headline">Articles</div><div class="length-num">13</div></a><a href="/tags/"><div class="headline">Tags</div><div class="length-num">11</div></a><a href="/categories/"><div class="headline">Categories</div><div class="length-num">0</div></a></div><a id="card-info-btn" target="_blank" rel="noopener" href="https://www.zhihu.com/people/schnappi-li"><i class="fab fa-zhihu"></i><span>Follow Me</span></a></div><div class="card-widget card-announcement"><div class="item-headline"><i class="fas fa-bullhorn fa-shake"></i><span>Announcement</span></div><div class="announcement_content">This is my Blog</div></div><div class="sticky_layout"><div class="card-widget card-recent-post"><div class="item-headline"><i class="fas fa-history"></i><span>Recent Posts</span></div><div class="aside-list"><div class="aside-list-item no-cover"><div class="content"><a class="title" href="/2026/01/05/Web%20Intro/" title="Web Intro">Web Intro</a><time datetime="2026-01-05T02:56:04.145Z" title="Created 2026-01-05 10:56:04">2026-01-05</time></div></div><div class="aside-list-item no-cover"><div class="content"><a class="title" href="/2026/01/05/hello-world/" title="Hello World">Hello World</a><time datetime="2026-01-05T02:56:03.568Z" title="Created 2026-01-05 10:56:03">2026-01-05</time></div></div><div class="aside-list-item no-cover"><div class="content"><a class="title" href="/2025/08/25/%E7%BB%84%E7%BD%91/" title="组网总结报告">组网总结报告</a><time datetime="2025-08-25T10:18:50.000Z" title="Created 2025-08-25 18:18:50">2025-08-25</time></div></div><div class="aside-list-item no-cover"><div class="content"><a class="title" href="/2025/08/25/%E8%A3%85%E6%9C%BA%E6%80%BB%E7%BB%93/" title="装机总结">装机总结</a><time datetime="2025-08-25T10:18:50.000Z" title="Created 2025-08-25 18:18:50">2025-08-25</time></div></div><div class="aside-list-item no-cover"><div class="content"><a class="title" href="/2025/05/12/vercelAndReact/" title="vercelAndReact">vercelAndReact</a><time datetime="2025-05-12T08:50:29.000Z" title="Created 2025-05-12 16:50:29">2025-05-12</time></div></div></div></div></div></div></main><footer id="footer"><div id="footer-wrap"><div class="copyright">&copy;2019 - 2026 By Ludiw Yuan</div><div class="framework-info"><span>Framework </span><a target="_blank" rel="noopener" href="https://hexo.io">Hexo</a><span class="footer-separator">|</span><span>Theme </span><a target="_blank" rel="noopener" href="https://github.com/jerryc127/hexo-theme-butterfly">Butterfly</a></div></div></footer></div><div id="rightside"><div id="rightside-config-hide"><button id="readmode" type="button" title="Reading Mode"><i class="fas fa-book-open"></i></button><button id="darkmode" type="button" title="Toggle Between Light and Dark Mode"><i class="fas fa-adjust"></i></button><button id="hide-aside-btn" type="button" title="Toggle Between Single-column and Double-column"><i class="fas fa-arrows-alt-h"></i></button></div><div id="rightside-config-show"><button id="rightside-config" type="button" title="Settings"><i class="fas fa-cog fa-spin"></i></button><button id="go-up" type="button" title="Back to Top"><span class="scroll-percent"></span><i class="fas fa-arrow-up"></i></button></div></div><div><script src="/js/utils.js"></script><script src="/js/main.js"></script><div class="js-pjax"><script>(async () => {
+  const showKatex = () => {
+    document.querySelectorAll('#article-container .katex').forEach(el => el.classList.add('katex-show'))
+  }
+
+  if (!window.katex_js_css) {
+    window.katex_js_css = true
+    await btf.getCSS('https://cdn.jsdelivr.net/npm/katex/dist/katex.min.css')
+    if (true) {
+      await btf.getScript('https://cdn.jsdelivr.net/npm/katex/dist/contrib/copy-tex.min.js')
+    }
+  }
+
+  showKatex()
+})()</script><script>(() => {
+  const runMermaid = ele => {
+    window.loadMermaid = true
+    const theme = document.documentElement.getAttribute('data-theme') === 'dark' ? '' : ''
+
+    ele.forEach((item, index) => {
+      const mermaidSrc = item.firstElementChild
+      const mermaidThemeConfig = `%%{init:{ 'theme':'${theme}'}}%%\n`
+      const mermaidID = `mermaid-${index}`
+      const mermaidDefinition = mermaidThemeConfig + mermaidSrc.textContent
+
+      const renderFn = mermaid.render(mermaidID, mermaidDefinition)
+      const renderMermaid = svg => {
+        mermaidSrc.insertAdjacentHTML('afterend', svg)
+      }
+
+      // mermaid v9 and v10 compatibility
+      typeof renderFn === 'string' ? renderMermaid(renderFn) : renderFn.then(({ svg }) => renderMermaid(svg))
+    })
+  }
+
+  const codeToMermaid = () => {
+    const codeMermaidEle = document.querySelectorAll('pre > code.mermaid')
+    if (codeMermaidEle.length === 0) return
+
+    codeMermaidEle.forEach(ele => {
+      const preEle = document.createElement('pre')
+      preEle.className = 'mermaid-src'
+      preEle.hidden = true
+      preEle.textContent = ele.textContent
+      const newEle = document.createElement('div')
+      newEle.className = 'mermaid-wrap'
+      newEle.appendChild(preEle)
+      ele.parentNode.replaceWith(newEle)
+    })
+  }
+
+  const loadMermaid = () => {
+    if (true) codeToMermaid()
+    const $mermaid = document.querySelectorAll('#article-container .mermaid-wrap')
+    if ($mermaid.length === 0) return
+
+    const runMermaidFn = () => runMermaid($mermaid)
+    btf.addGlobalFn('themeChange', runMermaidFn, 'mermaid')
+    window.loadMermaid ? runMermaidFn() : btf.getScript('https://cdn.jsdelivr.net/npm/mermaid/dist/mermaid.min.js').then(runMermaidFn)
+  }
+
+  btf.addGlobalFn('encrypt', loadMermaid, 'mermaid')
+  window.pjax ? loadMermaid() : document.addEventListener('DOMContentLoaded', loadMermaid)
+})()</script></div><script async data-pjax src="//busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js"></script></div></body></html>

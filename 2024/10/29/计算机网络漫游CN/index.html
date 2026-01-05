@@ -1,0 +1,369 @@
+<!DOCTYPE html><html lang="en" data-theme="light"><head><meta charset="UTF-8"><meta http-equiv="X-UA-Compatible" content="IE=edge"><meta name="viewport" content="width=device-width, initial-scale=1.0,viewport-fit=cover"><title>计算机网络漫游CN | YXW</title><meta name="author" content="Ludiw Yuan"><meta name="copyright" content="Ludiw Yuan"><meta name="format-detection" content="telephone=no"><meta name="theme-color" content="#ffffff"><meta name="description" content="计算机网络漫游 本期讲讲基本的计算机网络概念，目标是让非业内人士了解网络运行原理和常见的概念。结合之前的文章，本期内容阅读耗时10min。   本期需要了解的重点概念： IP 子网掩码 WAN LAN WLAN NAT MAC 本期需要模拟的形象：邮局是怎么发到你家（通讯的起点和重点，以及通讯的主体）    WAN&#x2F;LAN wide area network vs local area netwo">
+<meta property="og:type" content="article">
+<meta property="og:title" content="计算机网络漫游CN">
+<meta property="og:url" content="http://example.com/2024/10/29/%E8%AE%A1%E7%AE%97%E6%9C%BA%E7%BD%91%E7%BB%9C%E6%BC%AB%E6%B8%B8CN/index.html">
+<meta property="og:site_name" content="YXW">
+<meta property="og:description" content="计算机网络漫游 本期讲讲基本的计算机网络概念，目标是让非业内人士了解网络运行原理和常见的概念。结合之前的文章，本期内容阅读耗时10min。   本期需要了解的重点概念： IP 子网掩码 WAN LAN WLAN NAT MAC 本期需要模拟的形象：邮局是怎么发到你家（通讯的起点和重点，以及通讯的主体）    WAN&#x2F;LAN wide area network vs local area netwo">
+<meta property="og:locale" content="en_US">
+<meta property="og:image" content="http://example.com/img/spinningTennis.jpg">
+<meta property="article:published_time" content="2024-10-29T02:18:50.000Z">
+<meta property="article:modified_time" content="2026-01-05T03:17:46.714Z">
+<meta property="article:author" content="Ludiw Yuan">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:image" content="http://example.com/img/spinningTennis.jpg"><link rel="shortcut icon" href="/img/favicon.png"><link rel="canonical" href="http://example.com/2024/10/29/%E8%AE%A1%E7%AE%97%E6%9C%BA%E7%BD%91%E7%BB%9C%E6%BC%AB%E6%B8%B8CN/index.html"><link rel="preconnect" href="//cdn.jsdelivr.net"/><link rel="preconnect" href="//busuanzi.ibruce.info"/><link rel="stylesheet" href="/css/index.css"><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fortawesome/fontawesome-free/css/all.min.css"><script>
+    (() => {
+      
+    const saveToLocal = {
+      set: (key, value, ttl) => {
+        if (!ttl) return
+        const expiry = Date.now() + ttl * 86400000
+        localStorage.setItem(key, JSON.stringify({ value, expiry }))
+      },
+      get: key => {
+        const itemStr = localStorage.getItem(key)
+        if (!itemStr) return undefined
+        const { value, expiry } = JSON.parse(itemStr)
+        if (Date.now() > expiry) {
+          localStorage.removeItem(key)
+          return undefined
+        }
+        return value
+      }
+    }
+
+    window.btf = {
+      saveToLocal,
+      getScript: (url, attr = {}) => new Promise((resolve, reject) => {
+        const script = document.createElement('script')
+        script.src = url
+        script.async = true
+        Object.entries(attr).forEach(([key, val]) => script.setAttribute(key, val))
+        script.onload = script.onreadystatechange = () => {
+          if (!script.readyState || /loaded|complete/.test(script.readyState)) resolve()
+        }
+        script.onerror = reject
+        document.head.appendChild(script)
+      }),
+      getCSS: (url, id) => new Promise((resolve, reject) => {
+        const link = document.createElement('link')
+        link.rel = 'stylesheet'
+        link.href = url
+        if (id) link.id = id
+        link.onload = link.onreadystatechange = () => {
+          if (!link.readyState || /loaded|complete/.test(link.readyState)) resolve()
+        }
+        link.onerror = reject
+        document.head.appendChild(link)
+      }),
+      addGlobalFn: (key, fn, name = false, parent = window) => {
+        if (!false && key.startsWith('pjax')) return
+        const globalFn = parent.globalFn || {}
+        globalFn[key] = globalFn[key] || {}
+        globalFn[key][name || Object.keys(globalFn[key]).length] = fn
+        parent.globalFn = globalFn
+      }
+    }
+  
+      
+      const activateDarkMode = () => {
+        document.documentElement.setAttribute('data-theme', 'dark')
+        if (document.querySelector('meta[name="theme-color"]') !== null) {
+          document.querySelector('meta[name="theme-color"]').setAttribute('content', '#0d0d0d')
+        }
+      }
+      const activateLightMode = () => {
+        document.documentElement.setAttribute('data-theme', 'light')
+        if (document.querySelector('meta[name="theme-color"]') !== null) {
+          document.querySelector('meta[name="theme-color"]').setAttribute('content', '#ffffff')
+        }
+      }
+
+      btf.activateDarkMode = activateDarkMode
+      btf.activateLightMode = activateLightMode
+
+      const theme = saveToLocal.get('theme')
+    
+          theme === 'dark' ? activateDarkMode() : theme === 'light' ? activateLightMode() : null
+        
+      
+      const asideStatus = saveToLocal.get('aside-status')
+      if (asideStatus !== undefined) {
+        document.documentElement.classList.toggle('hide-aside', asideStatus === 'hide')
+      }
+    
+      
+    const detectApple = () => {
+      if (/iPad|iPhone|iPod|Macintosh/.test(navigator.userAgent)) {
+        document.documentElement.classList.add('apple')
+      }
+    }
+    detectApple()
+  
+    })()
+  </script><script>const GLOBAL_CONFIG = {
+  root: '/',
+  algolia: undefined,
+  localSearch: undefined,
+  translate: undefined,
+  highlight: {"plugin":"highlight.js","highlightCopy":true,"highlightLang":true,"highlightHeightLimit":false,"highlightFullpage":false,"highlightMacStyle":false},
+  copy: {
+    success: 'Copy Successful',
+    error: 'Copy Failed',
+    noSupport: 'Browser Not Supported'
+  },
+  relativeDate: {
+    homepage: false,
+    post: false
+  },
+  runtime: '',
+  dateSuffix: {
+    just: 'Just now',
+    min: 'minutes ago',
+    hour: 'hours ago',
+    day: 'days ago',
+    month: 'months ago'
+  },
+  copyright: undefined,
+  lightbox: 'null',
+  Snackbar: undefined,
+  infinitegrid: {
+    js: 'https://cdn.jsdelivr.net/npm/@egjs/infinitegrid/dist/infinitegrid.min.js',
+    buttonText: 'Load More'
+  },
+  isPhotoFigcaption: false,
+  islazyload: false,
+  isAnchor: false,
+  percent: {
+    toc: true,
+    rightside: false,
+  },
+  autoDarkmode: false
+}</script><script id="config-diff">var GLOBAL_CONFIG_SITE = {
+  title: '计算机网络漫游CN',
+  isPost: true,
+  isHome: false,
+  isHighlightShrink: false,
+  isToc: true,
+  isShuoshuo: false
+}</script><meta name="generator" content="Hexo 7.3.0"><link href="https://cdn.bootcss.com/KaTeX/0.11.1/katex.min.css" rel="stylesheet" /></head><body><div class="post" id="body-wrap"><header class="post-bg" id="page-header"><nav id="nav"><span id="blog-info"><a class="nav-site-title" href="/"><span class="site-name">YXW</span></a><a class="nav-page-title" href="/"><span class="site-name">计算机网络漫游CN</span></a></span><div id="menus"></div></nav><div id="post-info"><h1 class="post-title">计算机网络漫游CN</h1><div id="post-meta"><div class="meta-firstline"><span class="post-meta-date"><i class="far fa-calendar-alt fa-fw post-meta-icon"></i><span class="post-meta-label">Created</span><time class="post-meta-date-created" datetime="2024-10-29T02:18:50.000Z" title="Created 2024-10-29 10:18:50">2024-10-29</time><span class="post-meta-separator">|</span><i class="fas fa-history fa-fw post-meta-icon"></i><span class="post-meta-label">Updated</span><time class="post-meta-date-updated" datetime="2026-01-05T03:17:46.714Z" title="Updated 2026-01-05 11:17:46">2026-01-05</time></span></div><div class="meta-secondline"><span class="post-meta-separator">|</span><span class="post-meta-pv-cv" id="" data-flag-title=""><i class="far fa-eye fa-fw post-meta-icon"></i><span class="post-meta-label">Post Views:</span><span id="busuanzi_value_page_pv"><i class="fa-solid fa-spinner fa-spin"></i></span></span></div></div></div></header><main class="layout" id="content-inner"><div id="post"><article class="container post-content" id="article-container"><h1>计算机网络漫游</h1>
+<p>本期讲讲基本的计算机网络概念，目标是让非业内人士了解网络运行原理和常见的概念。结合之前的文章，本期内容阅读耗时10min。</p>
+<hr>
+<blockquote>
+<p>本期需要了解的重点概念： IP 子网掩码 WAN LAN WLAN NAT MAC</p>
+<p>本期需要模拟的形象：邮局是怎么发到你家（通讯的起点和重点，以及通讯的主体）</p>
+</blockquote>
+<ol>
+<li>
+<p>WAN/LAN</p>
+<p>wide area network vs local area network</p>
+<p>两者没有本质区别，都是连接一定数量的计算机网络设备，当然如其名。WAN的范围更广，因为它能够将多个LAN连接起来。</p>
+<p>WAN也是我们俗称的外网，谐音比较好记的也就是万维网。LAN是局域网，典型的是小学时候信息课的局域网络网上邻居的电脑网络，就是典型的LAN实例。</p>
+<p>现在你们知道路由器怎么连接了吧（现在的路由器的端口通用，真不错）</p>
+<p><img src="https://i.imgur.com/ceyX0dT.png" alt="router"></p>
+<p>至于WLAN 这里就是wireless local area network</p>
+<p>有意思的是WiFi是一种网络协议，我们通常住酒店或者吃麦当劳的时候向别人索要网路的时候，实际上的需要的是有<em>连接外网</em>功能的<code>无线网络</code></p>
+<p>多提一句：</p>
+<p>电磁波的传播速度 电流的移动速度 电信号的速度</p>
+</li>
+<li>
+<p>网络分层</p>
+<p>这个部分设定的部分很多，我认为重要的就是抽象和分层的思想，其次是各种协议运用，这里直接引用总结类型的图片。</p>
+<blockquote>
+<ul>
+<li>将功能抽象成接口，使得开发者能够专注当前的系统需求。</li>
+<li>将功能分层成逻辑，使得每一层都能专注定位到一定范围内的工作</li>
+</ul>
+</blockquote>
+<ol>
+<li>应用层：两个终端设备<code>应用程序</code>之间交互，典型如FTP/SFTP/POP</li>
+<li>传输层：两台设备进程之间数据传输服务，典型的TCP/UDP</li>
+<li>网络层：网络层为分组交换网络上的不同主机提供通信服务</li>
+<li>接口层：链路层+物理层</li>
+</ol>
+<p><img src="https://i.imgur.com/Z1ablwf_d.png?maxwidth=520&amp;shape=thumb&amp;fidelity=high" alt="OSI1"></p>
+<p><img src="https://i.imgur.com/0O8H4p0.png" alt="OSI2"></p>
+<hr>
+<p>TBD： <a target="_blank" rel="noopener" href="https://sspai.com/post/64659">ref</a></p>
+</li>
+<li>
+<p>IP MAC</p>
+<p>网络层是整个计算机网络的核心，这里单独写一下自己的理解</p>
+<ul>
+<li>
+<p>路由器与交换机</p>
+<p>现代市售路由器实际上已经集成运放 交换 路由的功能。</p>
+<ol>
+<li>
+<p>先从集线器（物理层）引入</p>
+<p>最常见的概念就是我们USB集线器了，现在的笔本为了轻量，接口限制的厉害，不是所有的外设能运用在相关的设备上面。</p>
+<p>拿一根网线，直接连接两个电脑网口，你会发现这两者通过各自的网卡连接成功，也能正常通讯，甚至联机打CS。</p>
+<p>这时候，我们需要在添加一名玩家怎么办，这时候我们就能供通过集线器中继他们的通讯过程</p>
+<p>两个概念 phy模块：输出格式一致的电信号  广播：对所有在端口中的设备进行都进行发送一次信号（见参考文献）</p>
+</li>
+<li>
+<p>广播和转发</p>
+<p>广播的收信是全体，转发的收信方式是单个对象，因此转发需要对方的MAC地址（这是由于没到网络层还没有IP的概念，需要的是具体的设备地址）</p>
+</li>
+<li>
+<p>集线器vs交换机</p>
+<p><img src="https://static.mianbaoban-assets.eet-china.com/xinyu-images/MBXY-CR-e02ed61543fffbfda36d09744d1fb3f6.png" alt="集线器"></p>
+</li>
+</ol>
+<p><img src="https://static.mianbaoban-assets.eet-china.com/xinyu-images/MBXY-CR-06e4cd392e2fe8c6a10f6d664000efb9.png" alt="交换机"></p>
+<ol start="4">
+<li>
+<p>路由器</p>
+<p>交换机为维护了mac表，但由于mac是一对一的映射，不可能维护所有的入网设备，这里就引入了路由器（网络层交换机）。</p>
+<p>路由器委维护了路由表，这个就不是三层MAC表了，不然肯定维护不过来。具体看参考列表</p>
+<hr>
+<p>当然，之前进了一代光纤上网。也就是传输时使用的光信号（原先电信号衰减在介质中速度是2/3 光速）。这个光电转换时做的。不过现在应该也集成了在一起。</p>
+</li>
+</ol>
+</li>
+<li>
+<p>IP</p>
+<p>类比你的收货地址，短暂思考一下，你填写地址的时候，有哪些信息[国家+省市+片区+街道+门牌号（姓名和手机号）]。</p>
+<p>我们把门牌号前面的作为网络地址，本身当作主机号，就得到现有的ip地址</p>
+<blockquote>
+<p>ip = 网络地址 + 主机号</p>
+</blockquote>
+<p>所有的ip地址都是<code>标识</code>主机IP地址，网络世界中，主体是各种主机（入网设备如路由/手机/服务器），所以ip地址是<strong>这些设备</strong>的门牌号。MAC地址是主机的身份证号（六组16字节，前三组是<code>设备商识别码</code>，后三组自动分配）</p>
+<ol>
+<li>
+<p>网络划分</p>
+<p>是否想过，你所在地区的邮政编码怎么来的。你所在的城市规划帮你编码了这些地址。同样，你的网络服务商根据ip协议来分配所用的ip。</p>
+<p>直接设想一下，我们的IP地址肯定会根据地区来编码。这里我们就会得到<code>网段</code>这个概念</p>
+<ul>
+<li>
+<p>网络地址</p>
+<p>IP地址等于网络号+主机号，但是与mac地址不同的是，ipv4总共只有32位，如果像mac一样固定分组，主机位只有8位，一个区域内的主机号不可能只有256台。因此，IP地址采用了变动性的编码</p>
+</li>
+<li>
+<p>子网掩码</p>
+<p>我们最开始举例中的两台电脑，之所以能够直接通信，前提是他们的被识别在了同一个<code>局域网</code>（网段）内。</p>
+<p>这个就是通过他们的子网掩码+ip来判断的。</p>
+<blockquote>
+<p>确定网络规模：根据需要支持的主机数量选择合适的子网掩码。</p>
+<p>使用公式 <span class="katex"><span class="katex-mathml"><math xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><msup><mn>2</mn><mi>𝑛</mi></msup><mo>−</mo><mn>2</mn></mrow><annotation encoding="application/x-tex">2^𝑛−2</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.7477em;vertical-align:-0.0833em;"></span><span class="mord"><span class="mord">2</span><span class="msupsub"><span class="vlist-t"><span class="vlist-r"><span class="vlist" style="height:0.6644em;"><span style="top:-3.063em;margin-right:0.05em;"><span class="pstrut" style="height:2.7em;"></span><span class="sizing reset-size6 size3 mtight"><span class="mord mathnormal mtight">n</span></span></span></span></span></span></span></span><span class="mspace" style="margin-right:0.2222em;"></span><span class="mbin">−</span><span class="mspace" style="margin-right:0.2222em;"></span></span><span class="base"><span class="strut" style="height:0.6444em;"></span><span class="mord">2</span></span></span></span>来计算可用主机数量，其中n是主机位数。</p>
+<p>选择子网掩码：</p>
+<p>常用的子网掩码有：<br>
+/24：255.255.255.0（可支持 254 个主机）<br>
+/23：255.255.254.0（可支持 510 个主机）<br>
+/22：255.255.252.0（可支持 1022 个主机）<br>
+/21：255.255.248.0（可支持 2046 个主机）<br>
+以此类推。<br>
+转换为二进制：</p>
+<p>将选择的子网掩码转换为二进制形式，前面的1表示网络位，后面的0表示主机位。例如，/24 的二进制形式为 11111111.11111111.11111111.00000000。<br>
+计算网络地址/广播地址：<br>
+IP地址：192.168.1.10<br>
+子网掩码：/24（255.255.255.0）<br>
+计算网络地址：<br>
+192.168.1.10（11000000.10101000.00000001.00001010）<br>
+255.255.255.0（11111111.11111111.11111111.00000000）<br>
+网络地址：192.168.1.0</p>
+<p>广播地址是网络地址的主机位部分全为1,相当于全局域网内转发：192.158.1.0+1：192.168.1.255</p>
+</blockquote>
+</li>
+</ul>
+</li>
+</ol>
+</li>
+</ul>
+</li>
+</ol>
+<hr>
+<p>ref:</p>
+<p><a target="_blank" rel="noopener" href="https://www.eet-china.com/mp/a73949.html">https://www.eet-china.com/mp/a73949.html</a></p>
+<p><a target="_blank" rel="noopener" href="https://www.runoob.com/w3cnote/summary-of-network.html#_label3">https://www.runoob.com/w3cnote/summary-of-network.html#_label3</a></p>
+<hr>
+<p>交换器 vs 路由器 plus</p>
+<blockquote>
+<p>提问引入：既然路由器具有交换功能，那么为什么两者不能混用？</p>
+</blockquote>
+<p>从网络层来看：</p>
+<ul>
+<li>路由的作用是解析出ip信息，是外网wan/wide area与lan（local area）的转换。通俗地讲，是中央驿站（翻译官）</li>
+<li>交换机同上，维护lan对应的端口。是局域网的网关。通俗的讲，就是本地的菜鸟驿站。</li>
+</ul>
+<p>从硬件构成来看：</p>
+<p>路由器简化来说，就是将报文加上ip头（这里的模型排除了一些决策和查表细节），因此，他维护的端口主要是所谓的外网网段，所以端口资源有限</p>
+<p>而交换机源地址对于终端，因此需要更多的物理端口。</p>
+<p>综上：</p>
+<p>如果你lan只是作于几个终端的局域网，那么你完全可以讲路由的wan口扩充来充当交换功能，只不过可能会多了一些nat过程，导致网路拥堵</p>
+<p><strong>进阶</strong></p>
+<ul>
+<li>
+<p>nat</p>
+<p>net address transfer</p>
+<p>在wan的出口，会经过一次nat，将内网ip转成公网ip</p>
+</li>
+<li>
+<p>arp</p>
+<p>address resolution protocol</p>
+<p>在链路层中，同一个lan需要将ip对应到具体的mac设备</p>
+</li>
+</ul>
+</article><div class="post-copyright"><div class="post-copyright__author"><span class="post-copyright-meta"><i class="fas fa-circle-user fa-fw"></i>Author: </span><span class="post-copyright-info"><a href="http://example.com">Ludiw Yuan</a></span></div><div class="post-copyright__type"><span class="post-copyright-meta"><i class="fas fa-square-arrow-up-right fa-fw"></i>Link: </span><span class="post-copyright-info"><a href="http://example.com/2024/10/29/%E8%AE%A1%E7%AE%97%E6%9C%BA%E7%BD%91%E7%BB%9C%E6%BC%AB%E6%B8%B8CN/">http://example.com/2024/10/29/%E8%AE%A1%E7%AE%97%E6%9C%BA%E7%BD%91%E7%BB%9C%E6%BC%AB%E6%B8%B8CN/</a></span></div><div class="post-copyright__notice"><span class="post-copyright-meta"><i class="fas fa-circle-exclamation fa-fw"></i>Copyright Notice: </span><span class="post-copyright-info">All articles on this blog are licensed under <a target="_blank" rel="noopener" href="https://creativecommons.org/licenses/by-nc-sa/4.0/">CC BY-NC-SA 4.0</a> unless otherwise stated.</span></div></div><div class="tag_share"><div class="post-share"><div class="social-share" data-image="/img/spinningTennis.jpg" data-sites="facebook,twitter,wechat,weibo,qq"></div><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/butterfly-extsrc/sharejs/dist/css/share.min.css" media="print" onload="this.media='all'"><script src="https://cdn.jsdelivr.net/npm/butterfly-extsrc/sharejs/dist/js/social-share.min.js" defer></script></div></div><nav class="pagination-post" id="pagination"><a class="pagination-related" href="/2024/11/19/ssh/" title="ssh"><div class="cover" style="background: var(--default-bg-color)"></div><div class="info"><div class="info-1"><div class="info-item-1">Previous</div><div class="info-item-2">ssh</div></div><div class="info-2"><div class="info-item-1">  ssh worksflow I classify the ssh for these three parts: code from ssh -vvv    tcp   connection establisment 12debug1: Connecting to ec2-3-91-205-43.compute-1.amazonaws.com [3.91.205.43] port 22.debug1: Connection established.   verision negotiation 12debug1: Local version string SSH-2.0-OpenSSH_for_Windows_9.5debug1: Remote protocol version 2.0, remote software version OpenSSH_9.6p1 Ubuntu-3ubuntu13.5   algorithm negotiation 1234debug1: kex: algorithm: curve25519-sha256debug1: kex: host...</div></div></div></a><a class="pagination-related" href="/2024/10/22/webagain/" title="webagain"><div class="cover" style="background: var(--default-bg-color)"></div><div class="info text-right"><div class="info-1"><div class="info-item-1">Next</div><div class="info-item-2">webagain</div></div><div class="info-2"><div class="info-item-1">Web again First Two Conception   URl vs DNS URL is locater includeing domian+protocal eg https/ http + yuanxw.top sometimes you can successfully get your resource typing only domain, which is due to browser help clarify the spec protocol DNS is a serve, looking at this name. you could guess it should be a series of system to offer a network. Obviously, it is and serves as a convert to domain to spec IP so that you can get your resource you applied for.   IP address Conventionally, thousands...</div></div></div></a></nav></div><div class="aside-content" id="aside-content"><div class="card-widget card-info text-center"><div class="avatar-img"><img src="/img/spinningTennis.jpg" onerror="this.onerror=null;this.src='/img/friend_404.gif'" alt="avatar"/></div><div class="author-info-name">Ludiw Yuan</div><div class="author-info-description"></div><div class="site-data"><a href="/archives/"><div class="headline">Articles</div><div class="length-num">13</div></a><a href="/tags/"><div class="headline">Tags</div><div class="length-num">11</div></a><a href="/categories/"><div class="headline">Categories</div><div class="length-num">0</div></a></div><a id="card-info-btn" target="_blank" rel="noopener" href="https://www.zhihu.com/people/schnappi-li"><i class="fab fa-zhihu"></i><span>Follow Me</span></a></div><div class="card-widget card-announcement"><div class="item-headline"><i class="fas fa-bullhorn fa-shake"></i><span>Announcement</span></div><div class="announcement_content">This is my Blog</div></div><div class="sticky_layout"><div class="card-widget" id="card-toc"><div class="item-headline"><i class="fas fa-stream"></i><span>Contents</span><span class="toc-percentage"></span></div><div class="toc-content"><ol class="toc"><li class="toc-item toc-level-1"><a class="toc-link"><span class="toc-number">1.</span> <span class="toc-text">计算机网络漫游</span></a></li></ol></div></div><div class="card-widget card-recent-post"><div class="item-headline"><i class="fas fa-history"></i><span>Recent Posts</span></div><div class="aside-list"><div class="aside-list-item no-cover"><div class="content"><a class="title" href="/2026/01/05/Web%20Intro/" title="Web Intro">Web Intro</a><time datetime="2026-01-05T02:56:04.145Z" title="Created 2026-01-05 10:56:04">2026-01-05</time></div></div><div class="aside-list-item no-cover"><div class="content"><a class="title" href="/2026/01/05/hello-world/" title="Hello World">Hello World</a><time datetime="2026-01-05T02:56:03.568Z" title="Created 2026-01-05 10:56:03">2026-01-05</time></div></div><div class="aside-list-item no-cover"><div class="content"><a class="title" href="/2025/08/25/%E7%BB%84%E7%BD%91/" title="组网总结报告">组网总结报告</a><time datetime="2025-08-25T10:18:50.000Z" title="Created 2025-08-25 18:18:50">2025-08-25</time></div></div><div class="aside-list-item no-cover"><div class="content"><a class="title" href="/2025/08/25/%E8%A3%85%E6%9C%BA%E6%80%BB%E7%BB%93/" title="装机总结">装机总结</a><time datetime="2025-08-25T10:18:50.000Z" title="Created 2025-08-25 18:18:50">2025-08-25</time></div></div><div class="aside-list-item no-cover"><div class="content"><a class="title" href="/2025/05/12/vercelAndReact/" title="vercelAndReact">vercelAndReact</a><time datetime="2025-05-12T08:50:29.000Z" title="Created 2025-05-12 16:50:29">2025-05-12</time></div></div></div></div></div></div></main><footer id="footer"><div id="footer-wrap"><div class="copyright">&copy;2019 - 2026 By Ludiw Yuan</div><div class="framework-info"><span>Framework </span><a target="_blank" rel="noopener" href="https://hexo.io">Hexo</a><span class="footer-separator">|</span><span>Theme </span><a target="_blank" rel="noopener" href="https://github.com/jerryc127/hexo-theme-butterfly">Butterfly</a></div></div></footer></div><div id="rightside"><div id="rightside-config-hide"><button id="readmode" type="button" title="Reading Mode"><i class="fas fa-book-open"></i></button><button id="darkmode" type="button" title="Toggle Between Light and Dark Mode"><i class="fas fa-adjust"></i></button><button id="hide-aside-btn" type="button" title="Toggle Between Single-column and Double-column"><i class="fas fa-arrows-alt-h"></i></button></div><div id="rightside-config-show"><button id="rightside-config" type="button" title="Settings"><i class="fas fa-cog fa-spin"></i></button><button class="close" id="mobile-toc-button" type="button" title="Table of Contents"><i class="fas fa-list-ul"></i></button><button id="go-up" type="button" title="Back to Top"><span class="scroll-percent"></span><i class="fas fa-arrow-up"></i></button></div></div><div><script src="/js/utils.js"></script><script src="/js/main.js"></script><div class="js-pjax"><script>(async () => {
+  const showKatex = () => {
+    document.querySelectorAll('#article-container .katex').forEach(el => el.classList.add('katex-show'))
+  }
+
+  if (!window.katex_js_css) {
+    window.katex_js_css = true
+    await btf.getCSS('https://cdn.jsdelivr.net/npm/katex/dist/katex.min.css')
+    if (true) {
+      await btf.getScript('https://cdn.jsdelivr.net/npm/katex/dist/contrib/copy-tex.min.js')
+    }
+  }
+
+  showKatex()
+})()</script><script>(() => {
+  const runMermaid = ele => {
+    window.loadMermaid = true
+    const theme = document.documentElement.getAttribute('data-theme') === 'dark' ? '' : ''
+
+    ele.forEach((item, index) => {
+      const mermaidSrc = item.firstElementChild
+      const mermaidThemeConfig = `%%{init:{ 'theme':'${theme}'}}%%\n`
+      const mermaidID = `mermaid-${index}`
+      const mermaidDefinition = mermaidThemeConfig + mermaidSrc.textContent
+
+      const renderFn = mermaid.render(mermaidID, mermaidDefinition)
+      const renderMermaid = svg => {
+        mermaidSrc.insertAdjacentHTML('afterend', svg)
+      }
+
+      // mermaid v9 and v10 compatibility
+      typeof renderFn === 'string' ? renderMermaid(renderFn) : renderFn.then(({ svg }) => renderMermaid(svg))
+    })
+  }
+
+  const codeToMermaid = () => {
+    const codeMermaidEle = document.querySelectorAll('pre > code.mermaid')
+    if (codeMermaidEle.length === 0) return
+
+    codeMermaidEle.forEach(ele => {
+      const preEle = document.createElement('pre')
+      preEle.className = 'mermaid-src'
+      preEle.hidden = true
+      preEle.textContent = ele.textContent
+      const newEle = document.createElement('div')
+      newEle.className = 'mermaid-wrap'
+      newEle.appendChild(preEle)
+      ele.parentNode.replaceWith(newEle)
+    })
+  }
+
+  const loadMermaid = () => {
+    if (true) codeToMermaid()
+    const $mermaid = document.querySelectorAll('#article-container .mermaid-wrap')
+    if ($mermaid.length === 0) return
+
+    const runMermaidFn = () => runMermaid($mermaid)
+    btf.addGlobalFn('themeChange', runMermaidFn, 'mermaid')
+    window.loadMermaid ? runMermaidFn() : btf.getScript('https://cdn.jsdelivr.net/npm/mermaid/dist/mermaid.min.js').then(runMermaidFn)
+  }
+
+  btf.addGlobalFn('encrypt', loadMermaid, 'mermaid')
+  window.pjax ? loadMermaid() : document.addEventListener('DOMContentLoaded', loadMermaid)
+})()</script></div><script async data-pjax src="//busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js"></script></div></body></html>
